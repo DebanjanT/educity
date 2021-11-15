@@ -1,18 +1,23 @@
 import Link from "next/link";
 import { useRef } from "react";
+import axios from "axios";
+
 export default function Signup() {
   const nameRef = useRef();
   const emailRef = useRef();
   const PasswordRef = useRef();
 
-  function registerFormSubmitHandler(e) {
+  const registerFormSubmitHandler = async (e) => {
     e.preventDefault();
-    const regName = nameRef.current.value;
-    const regEmail = emailRef.current.value;
-    const regPassword = PasswordRef.current.value;
-
-    console.log([regName, regEmail, regPassword]);
-  }
+    const name = nameRef.current.value;
+    const email = emailRef.current.value;
+    const password = PasswordRef.current.value;
+    const { data } = await axios.post(`http://localhost:8000/api/register`, {
+      name,
+      email,
+      password,
+    });
+  };
 
   return (
     <>
