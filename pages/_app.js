@@ -1,7 +1,14 @@
-import 'tailwindcss/tailwind.css'
+import "tailwindcss/tailwind.css";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return (
+    <>
+      <ToastContainer position="top-right" autoClose={3000} />{" "}
+      <Component {...pageProps} />
+    </>
+  );
 }
 
-export default MyApp
+export default MyApp;

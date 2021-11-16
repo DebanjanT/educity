@@ -1,27 +1,42 @@
 import Link from "next/link";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
+import { darkMode } from "../../tailwind.config";
 
 export default function Signup() {
+  const [loading, setLoading] = useState(false);
   const nameRef = useRef();
   const emailRef = useRef();
   const PasswordRef = useRef();
 
   const registerFormSubmitHandler = async (e) => {
     e.preventDefault();
-    const name = nameRef.current.value;
-    const email = emailRef.current.value;
-    const password = PasswordRef.current.value;
-    const { data } = await axios.post(`http://localhost:8000/api/register`, {
-      name,
-      email,
-      password,
-    });
+    try {
+      setLoading(true);
+      const name = nameRef.current.value;
+      const email = emailRef.current.value;
+      const password = PasswordRef.current.value;
+      const { data } = await axios.post(`http://localhost:8000/api/register`, {
+        name,
+        email,
+        password,
+      });
+      toast.success(`Registration success for ${name}`, {
+        theme: "dark",
+      });
+      setLoading(false);
+    } catch (err) {
+      toast.error(err.response.data, {
+        theme: "dark",
+      });
+      setLoading(false);
+    }
   };
 
   return (
     <>
-      <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8">
           <div>
             <img
@@ -113,12 +128,16 @@ export default function Signup() {
             <div>
               <button
                 type="submit"
-                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                className={
+                  loading
+                    ? "group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-400 focus:outline-none   "
+                    : "group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none   "
+                }
               >
                 <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                   {" "}
                 </span>
-                Sign in
+                {loading ? "Please Wait..." : "Create Account"}
               </button>
             </div>
           </form>
