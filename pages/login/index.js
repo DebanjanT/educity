@@ -1,13 +1,30 @@
 import { useRef } from "react";
+import { toast } from "react-toastify";
+import axios from "axios";
+
 const Login = () => {
-  const usernameRef = useRef();
+  const emailRef = useRef();
   const passRef = useRef();
   //form submit
-  function loginSubmitHandler(e) {
+  const loginSubmitHandler = async (e) => {
     e.preventDefault();
-    const loginUsername = usernameRef.current.value;
-    const logiPassword = passRef.current.value;
-  }
+    const email = emailRef.current.value;
+    const password = passRef.current.value;
+    console.log([email, password]);
+    try {
+      const { data } = await axios.post("/api/login", {
+        email,
+        password,
+      });
+      toast.success(`Logged in as ${email}`, {
+        theme: "dark",
+      });
+    } catch (err) {
+      toast.error(err.response.data, {
+        theme: "dark",
+      });
+    }
+  };
   return (
     <div className="w-full sm:w-full md:w-1/2 m-auto">
       <form
@@ -19,15 +36,15 @@ const Login = () => {
             className="block text-gray-700 text-sm font-bold mb-2"
             htmlFor="username"
           >
-            Username
+            Email
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="username"
-            type="text"
-            placeholder="Username"
+            type="email"
+            placeholder="email"
             required
-            ref={usernameRef}
+            ref={emailRef}
           />
         </div>
         <div className="mb-6">

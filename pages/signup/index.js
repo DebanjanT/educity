@@ -1,10 +1,12 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useRef, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { darkMode } from "../../tailwind.config";
 
 export default function Signup() {
+  const router = useRouter();
+
   const [loading, setLoading] = useState(false);
   const nameRef = useRef();
   const emailRef = useRef();
@@ -17,7 +19,7 @@ export default function Signup() {
       const name = nameRef.current.value;
       const email = emailRef.current.value;
       const password = PasswordRef.current.value;
-      const { data } = await axios.post(`http://localhost:8000/api/register`, {
+      const { data } = await axios.post("/api/register", {
         name,
         email,
         password,
@@ -26,6 +28,7 @@ export default function Signup() {
         theme: "dark",
       });
       setLoading(false);
+      router.replace("/");
     } catch (err) {
       toast.error(err.response.data, {
         theme: "dark",
@@ -145,4 +148,10 @@ export default function Signup() {
       </div>
     </>
   );
+}
+
+export async function getStaticProps() {
+  return {
+    props: {},
+  };
 }
