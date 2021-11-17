@@ -10,7 +10,7 @@ const Login = () => {
     e.preventDefault();
     const email = emailRef.current.value;
     const password = passRef.current.value;
-    console.log([email, password]);
+
     try {
       const { data } = await axios.post("/api/login", {
         email,
@@ -19,6 +19,7 @@ const Login = () => {
       toast.success(`Logged in as ${email}`, {
         theme: "dark",
       });
+      console.log("Login response", data);
     } catch (err) {
       toast.error(err.response.data, {
         theme: "dark",
