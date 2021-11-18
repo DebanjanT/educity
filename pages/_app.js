@@ -3,6 +3,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Provider } from "../context";
 import Nav from "../components/navbar";
+import Footer from "../components/footer";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -10,6 +11,7 @@ function MyApp({ Component, pageProps }) {
       <ToastContainer position="top-center" autoClose={3000} />
       <Nav />
       <Component {...pageProps} />
+      <Footer />
     </Provider>
   );
 }
