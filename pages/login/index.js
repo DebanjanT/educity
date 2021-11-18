@@ -1,10 +1,23 @@
-import { useRef } from "react";
+import { useRef, useContext, useEffect } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { Context } from "../../context";
+import { useRouter } from "next/router";
 
 const Login = () => {
+  const router = useRouter();
   const emailRef = useRef();
   const passRef = useRef();
+  //context state
+  const {
+    state: { user },
+    dispatch,
+  } = useContext(Context);
+
+  //redirect for already logged in user
+  useEffect(() => {
+    if (user !== null) router.push("/");
+  }, [user]);
   //form submit
   const loginSubmitHandler = async (e) => {
     e.preventDefault();
@@ -19,7 +32,17 @@ const Login = () => {
       toast.success(`Logged in as ${email}`, {
         theme: "dark",
       });
-      console.log("Login response", data);
+      //updating context state with reducer dispatch
+      dispatch({
+        type: "LOGIN",
+        payload: data,
+      });
+
+      //saving user_data to local storage
+      window.localStorage.setItem("user", JSON.stringify(data));
+
+      //redirect user
+      router.push("/");
     } catch (err) {
       toast.error(err.response.data, {
         theme: "dark",

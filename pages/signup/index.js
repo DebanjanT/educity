@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useRef, useState } from "react";
+import { useRef, useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { Context } from "../../context";
 
 export default function Signup() {
   const router = useRouter();
@@ -11,6 +12,15 @@ export default function Signup() {
   const nameRef = useRef();
   const emailRef = useRef();
   const PasswordRef = useRef();
+
+  //usecontext
+  const context = useContext(Context);
+  const {
+    state: { user },
+  } = context;
+  useEffect(() => {
+    if (user !== null) router.push("/");
+  }, [user]);
 
   const registerFormSubmitHandler = async (e) => {
     e.preventDefault();
