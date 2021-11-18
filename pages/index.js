@@ -1,26 +1,56 @@
 import Link from "next/link";
 import Head from "next/head";
+import Typewriter from "typewriter-effect";
 
 export default function index() {
+  const typewriter = new Typewriter({
+    loop: true,
+    delay: 2000,
+    autoStart: true,
+  });
   return (
     <div>
       <Head>
         <title>Educity| City of learining</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
+
       <section className="bg-coolGray-100 text-coolGray-800">
         <div className="container mx-auto flex flex-col items-center px-4 py-16 text-center md:py-32 md:px-10 lg:px-32 xl:max-w-3xl">
-          <h1 className=" text-4xl font-bold  leading-none sm:text-5xl mb-4">
+          <p className="font-bold text-4xl lg:text-6xl mb-4">
             <span>🏠</span> City of{" "}
             <span className="text-blue-600">Learning</span> <br />
-          </h1>
+          </p>
           <span className="text-blue-600 text-lg">
             <code>[ @javascript / @Node.js / @any ]</code>
           </span>
-          <p className="px-8 mt-8 mb-12 text-lg">
-            A learing platform build for students. Lots of free course & great
-            paid ones. JOIN TODAY!
+          <p className="px-8 mt-8 mb-12 text-lg lg:text-xl font-semibold">
+            <Typewriter
+              onInit={(typewriter) => {
+                typewriter
+                  .pauseFor(500)
+                  .typeString("Hello, Welcome to educity!")
+                  .pauseFor(300)
+                  .deleteAll()
+                  .typeString(
+                    "<span style='color:#3b81f6'>const</span> [learn, setLearn] = <span style='color:#3b81f6'>useState</span>('educity') "
+                  )
+                  .deleteAll()
+                  .typeString(
+                    "Get help from developer communities when you get stuck"
+                  )
+                  .deleteAll()
+                  .typeString(
+                    "<strong>Awsome Free course </strong>, feels like paid"
+                  )
+                  .deleteAll()
+                  .typeString("Thank you for visiting us")
+
+                  .start();
+              }}
+            />
           </p>
+
           <div className="flex flex-wrap justify-center">
             <Link href="/signup">
               <button className="px-8 py-3 m-2 text-lg font-semibold rounded bg-blue-500 text-coolGray-50 hover:bg-blue-800">
