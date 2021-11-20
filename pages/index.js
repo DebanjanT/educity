@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Head from "next/head";
 import Typewriter from "typewriter-effect";
-
+import ReactPlayer from "react-player";
 export default function index() {
   const typewriter = new Typewriter({
     loop: true,
@@ -15,7 +15,7 @@ export default function index() {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
 
-      <section className="bg-coolGray-100 text-coolGray-800">
+      <section className="flex flex-col lg:flex-row bg-coolGray-100 text-coolGray-800">
         <div className="container mx-auto flex flex-col items-center px-4 py-16 text-center md:py-32 md:px-10 lg:px-32 xl:max-w-3xl">
           <p className="font-bold text-4xl lg:text-6xl mb-4">
             <span>🏠</span> City of{" "}
@@ -24,6 +24,7 @@ export default function index() {
           <span className="text-blue-600 text-lg">
             <code>[ @javascript / @Node.js / @any ]</code>
           </span>
+
           <p className="px-8 mt-8 mb-12 text-lg lg:text-xl font-semibold">
             <Typewriter
               onInit={(typewriter) => {
@@ -67,6 +68,16 @@ export default function index() {
               </span>
             </button>
           </div>
+        </div>
+        <div className="w-auto lg:my-auto overflow-hidden rounded-none lg:rounded-xl shadow-lg  lg:mr-4 bg-gradient-to-r from-coolGray-700 via-coolGray-400 to-coolGray-700">
+          <ReactPlayer
+            url="https://misvecinos.s3.us-east-2.amazonaws.com/bg-educity.webm"
+            className="rounded-full"
+            playing={true}
+            muted={true}
+            loop={true}
+            playbackRate={0.5}
+          />
         </div>
       </section>
       <section className=" text-coolGray-800">
