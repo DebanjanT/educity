@@ -69,14 +69,14 @@ export default function index() {
             </button>
           </div>
         </div>
-        <div className="w-auto lg:my-auto overflow-hidden rounded-none lg:rounded-xl shadow-lg  lg:mr-4 bg-gradient-to-r from-coolGray-700 via-coolGray-400 to-coolGray-700">
+        <div className="w-auto order-first sm:order-first lg:order-last lg:my-auto overflow-hidden rounded-none  border-none lg:rounded-xl shadow-lg  lg:mr-4 bg-gradient-to-r from-coolGray-700 via-coolGray-400 to-coolGray-700">
           <ReactPlayer
-            url="https://misvecinos.s3.us-east-2.amazonaws.com/bg-educity.webm"
+            url="https://misvecinos.s3.us-east-2.amazonaws.com/InVideo___Educitypprenderfs_1637429604700.mp4"
             className="rounded-full"
             playing={true}
             muted={true}
             loop={true}
-            playbackRate={0.5}
+            controls
           />
         </div>
       </section>
