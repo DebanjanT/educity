@@ -17,7 +17,7 @@ export default function index() {
 
       <section className="flex flex-col lg:flex-row bg-coolGray-100 text-coolGray-800">
         <div className="container mx-auto flex flex-col items-center px-4 py-16 text-center md:py-32 md:px-10 lg:px-32 xl:max-w-3xl">
-          <p className="font-bold text-4xl lg:text-6xl mb-4">
+          <p className="font-bold text-4xl lg:text-5xl mb-4">
             <span>🏠</span> City of{" "}
             <span className="text-blue-600">Learning</span> <br />
           </p>
@@ -69,7 +69,7 @@ export default function index() {
             </button>
           </div>
         </div>
-        <div className="w-auto order-first sm:order-first lg:order-last lg:my-auto overflow-hidden rounded-none  border-none lg:rounded-xl shadow-lg  lg:mr-4 bg-gradient-to-r from-coolGray-700 via-coolGray-400 to-coolGray-700">
+        <div className="order-first lg:order-last   w-auto object-contain lg:my-auto overflow-hidden rounded-none  border-none lg:rounded-xl shadow-lg  lg:mr-4 bg-gradient-to-r from-coolGray-700 via-coolGray-400 to-coolGray-700">
           <ReactPlayer
             url="https://misvecinos.s3.us-east-2.amazonaws.com/InVideo___Educitypprenderfs_1637429604700.mp4"
             className="rounded-full"
@@ -77,6 +77,8 @@ export default function index() {
             muted={true}
             loop={true}
             controls
+            width="100%"
+            height="100%"
           />
         </div>
       </section>
