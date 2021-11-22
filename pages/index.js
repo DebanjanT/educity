@@ -2,11 +2,7 @@ import Link from "next/link";
 import Head from "next/head";
 import Typewriter from "typewriter-effect";
 import ReactPlayer from "react-player";
-const typewriter = new Typewriter({
-  loop: true,
-  delay: 2000,
-  autoStart: true,
-});
+
 export default function index() {
   return (
     <div>
@@ -21,38 +17,11 @@ export default function index() {
             <span>🏠</span> City of{" "}
             <span className="text-blue-600">Learning</span> <br />
           </p>
-          <span className="text-blue-600 text-lg">
+          <span className="text-blue-600 text-lg my-2">
             <code>[ @javascript / @Node.js / @any ]</code>
           </span>
 
-          <p className="px-8 mt-8 mb-12 text-lg lg:text-xl font-semibold">
-            <Typewriter
-              onInit={(typewriter) => {
-                typewriter
-                  .pauseFor(500)
-                  .typeString("Hello, Welcome to educity!")
-                  .pauseFor(300)
-                  .deleteAll()
-                  .typeString(
-                    "<span style='color:#3b81f6'>const</span> [learn, setLearn] = <span style='color:#3b81f6'>useState</span>('educity') "
-                  )
-                  .deleteAll()
-                  .typeString(
-                    "Get help from developer communities when you get stuck"
-                  )
-                  .deleteAll()
-                  .typeString(
-                    "<strong>Awsome Free course </strong>, feels like paid"
-                  )
-                  .deleteAll()
-                  .typeString("Thank you for visiting us")
-
-                  .start();
-              }}
-            />
-          </p>
-
-          <div className="flex flex-wrap justify-center">
+          <div className="flex flex-wrap justify-center mt-4">
             <Link href="/signup">
               <button className="px-8 py-3 m-2 text-lg font-semibold rounded bg-blue-500 text-coolGray-50 hover:bg-blue-800">
                 Join Today
