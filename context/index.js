@@ -1,4 +1,6 @@
 import { createContext, useReducer, useEffect } from "react";
+import axios from "axios";
+import { useRouter } from "next/router";
 
 //intial context state
 const initialState = {
@@ -22,6 +24,8 @@ const rootReducer = (state, action) => {
 
 //assign context provider for the whole app
 const Provider = ({ children }) => {
+  const router = useRouter();
+
   const [state, dispatch] = useReducer(rootReducer, initialState);
   useEffect(() => {
     dispatch({
@@ -29,6 +33,36 @@ const Provider = ({ children }) => {
       payload: JSON.parse(window.localStorage.getItem("user")),
     });
   }, []);
+
+  //handling expiired tokens with axios interceptors
+  axios.interceptors.response.use(
+    function (response) {
+      //any status code within the range of 2xx to trgigger this function
+      return response;
+    },
+    function (error) {
+      //any status code outside 2xx range specially 401{unauthorixed request} to trigger this and logout user
+      let res = error.response;
+      if (res.status === 401 && res.config && !res.config.__isRetryRequest) {
+        //trigger actual function to logout user and remove data from local storage
+        return new Promise((resolve, reject) => {
+          axios
+            .get("/api/logout")
+            .then((data) => {
+              dispatch({ type: "LOGOUT" });
+              window.localStorage.removeItem("user");
+              router.push("/login");
+            })
+            .catch((err) => {
+              console.log("AXIOS INTERCEPTOR ERR", err);
+              reject(error);
+            });
+        });
+      }
+      return Promise.reject(error);
+    }
+  );
+
   return (
     <Context.Provider value={{ state, dispatch }}>{children}</Context.Provider>
   );

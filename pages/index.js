@@ -2,12 +2,12 @@ import Link from "next/link";
 import Head from "next/head";
 import Typewriter from "typewriter-effect";
 import ReactPlayer from "react-player";
+const typewriter = new Typewriter({
+  loop: true,
+  delay: 2000,
+  autoStart: true,
+});
 export default function index() {
-  const typewriter = new Typewriter({
-    loop: true,
-    delay: 2000,
-    autoStart: true,
-  });
   return (
     <div>
       <Head>
