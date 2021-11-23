@@ -2,8 +2,19 @@ import Link from "next/link";
 import Head from "next/head";
 import Typewriter from "typewriter-effect";
 import ReactPlayer from "react-player";
+import { toast } from "react-toastify";
+import { useEffect, useState } from "react";
 
 export default function index() {
+  const [playedTime, setPlayedTime] = useState(null);
+  const previewClick = () => {
+    toast.success("Playing Educity Intro");
+  };
+  const stats = (playedSeconds) => {
+    console.log(playedSeconds);
+    var ptm = Math.floor(playedSeconds.playedSeconds);
+    setPlayedTime(ptm);
+  };
   return (
     <div>
       <Head>
@@ -23,13 +34,13 @@ export default function index() {
 
           <div className="flex flex-wrap justify-center mt-4">
             <Link href="/signup">
-              <button className="px-8 py-3 m-2 text-lg font-semibold rounded bg-blue-500 text-coolGray-50 hover:bg-blue-800">
+              <button className="px-8 py-3 m-2 text-lg font-semibold rounded bg-blue-500 text-coolGray-50 hover:bg-blue-700 transition-all ease-out duration-500 hover:scale-105 ">
                 Join Today
               </button>
             </Link>
             <button
               type="button"
-              className="relative px-8 py-3 m-2 overflow-hidden font-semibold rounded border hover:border shadow hover:border-2 hover:border-blue-500 "
+              className="relative px-8 py-3 m-2 transition ease-out duration-500 hover:scale-105 overflow-hidden font-semibold rounded border hover:border shadow hover:border-2 hover:border-blue-500 "
             >
               Features
               <span className="absolute top-0 right-0 px-5 py-1 text-xs tracking-wider text-center text-white shadow uppercase whitespace-no-wrap origin-bottom-left transform rotate-45 -translate-y-full translate-x-1/3 bg-blue-500">
@@ -38,17 +49,28 @@ export default function index() {
             </button>
           </div>
         </div>
-        <div className="order-first lg:order-last   w-auto object-contain lg:my-auto overflow-hidden rounded-none  border-none lg:rounded-xl shadow-lg  lg:mr-4 bg-gradient-to-r from-coolGray-700 via-coolGray-400 to-coolGray-700">
+        <div className="order-first lg:order-last   w-auto object-contain lg:my-auto overflow-hidden rounded-none  border-none lg:rounded-xl shadow-sm transition-all ease-in duration-300 hover:scale-105 hover:shadow-xl  lg:mr-4 bg-gradient-to-r from-blue-600 via-blue-400 to-blue-600">
           <ReactPlayer
             url="https://misvecinos.s3.us-east-2.amazonaws.com/InVideo___Educitypprenderfs_1637429604700.mp4"
             className="rounded-full"
             playing={true}
             muted={true}
             loop={true}
-            controls
             width="100%"
             height="100%"
+            controls
+            light={true}
+            onClickPreview={previewClick}
+            onProgress={stats}
           />
+          {playedTime > 1 && (
+            <div className="flex justify-center align-center items-center">
+              <p className="text-white text-center text-sm">
+                00:{playedTime < 10 && 0}
+                {playedTime}
+              </p>
+            </div>
+          )}
         </div>
       </section>
       <section className=" text-coolGray-800">

@@ -25,7 +25,7 @@ const Nav = () => {
   };
 
   return (
-    <div className="mx-4 py-3 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 ">
+    <div className="z-50 mx-4 py-3 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 ">
       <div className="relative flex items-center justify-between">
         <Link href="/">
           <a
@@ -68,7 +68,7 @@ const Nav = () => {
                   <a
                     aria-label="Product pricing"
                     title="Product pricing"
-                    className="font-medium tracking-wide bg-blue-600  rounded-lg px-4 py-2 text-gray-100 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                    className="font-medium tracking-wide bg-blue-600  rounded-lg px-4 py-2 text-gray-100 transition ease-in duration-200  hover:scale-105 hover:text-deep-purple-accent-400"
                   >
                     Register
                   </a>
