@@ -4,12 +4,13 @@ import axios from "axios";
 import { useContext } from "react";
 import { Context } from "../context";
 import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const context = useContext(Context);
   const { state, dispatch } = context;
   const { user } = state;
-
+  const router = useRouter();
   const logout = async () => {
     try {
       dispatch({
@@ -18,6 +19,7 @@ const Nav = () => {
       window.localStorage.removeItem("user");
       const { data } = await axios.get("/api/logout");
       toast.success(data.message);
+      router.push("/");
     } catch (err) {
       console.log("Logout error", err);
       toast.error(err);
@@ -80,14 +82,16 @@ const Nav = () => {
           {user !== null && (
             <>
               <li>
-                <p
-                  aria-label="Our product"
-                  title="Our product"
-                  className="flex justify-center align-center items-center uppercase font-medium tracking-wide text-blue-500 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                >
-                  <span className="text-gray-700 text-2xl mr-1">🙏🏻</span>
-                  {user.name}
-                </p>
+                <Link href="/user">
+                  <a
+                    aria-label="Our product"
+                    title="Our product"
+                    className="flex justify-center align-center items-center uppercase font-medium tracking-wide text-blue-500 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                  >
+                    <span className="text-gray-700 text-2xl mr-1">🙏🏻</span>
+                    {user.name}
+                  </a>
+                </Link>
               </li>
               <li>
                 <button

@@ -52,6 +52,7 @@ const Provider = ({ children }) => {
               dispatch({ type: "LOGOUT" });
               window.localStorage.removeItem("user");
               router.push("/login");
+              console.log("Axios interceptor hits");
             })
             .catch((err) => {
               console.log("AXIOS INTERCEPTOR ERR", err);
