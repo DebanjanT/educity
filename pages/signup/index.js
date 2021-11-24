@@ -4,6 +4,7 @@ import { useRef, useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Context } from "../../context";
+import Image from "next/image";
 
 export default function Signup() {
   const router = useRouter();
@@ -51,12 +52,16 @@ export default function Signup() {
   return (
     <>
       <div className="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-md w-full space-y-8">
-          <div>
-            <img
-              className="mx-auto h-20 w-20 rounded-full w-auto"
+        <div className="max-w-md w-full space-y-8 mx-auto">
+          <div className="flex flex-col justify-center items-center align-center">
+            <Image
+              className="shadow-lg rounded-full"
               src="https://misvecinos.s3.amazonaws.com/media/profile_pictures/PPR04360_1NokUbz.jpg"
               alt="Workflow"
+              height="100"
+              width="100"
+              layout="fixed"
+              objectFit="cover"
             />
             <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
               Register Your Account
@@ -67,7 +72,9 @@ export default function Signup() {
                 href="/login"
                 className="font-medium text-blue-600 hover:text-blue-500"
               >
-                Login
+                <span className="text-blue-500 font-semibold cursor-pointer">
+                  Login
+                </span>
               </Link>
             </p>
           </div>
