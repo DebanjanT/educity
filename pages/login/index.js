@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import { Context } from "../../context";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const Login = () => {
   const router = useRouter();
@@ -94,12 +95,11 @@ const Login = () => {
           >
             Sign In
           </button>
-          <a
-            className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-            href="#"
-          >
-            Forgot Password?
-          </a>
+          <Link href="/forgot-password">
+            <a className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
+              Forgot Password?
+            </a>
+          </Link>
         </div>
       </form>
       <p className="text-center text-gray-500 text-xs">

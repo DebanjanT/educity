@@ -18,6 +18,7 @@ export default function Signup() {
   const {
     state: { user },
   } = context;
+
   useEffect(() => {
     if (user !== null) router.push("/");
   }, [user]);

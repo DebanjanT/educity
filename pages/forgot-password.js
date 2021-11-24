@@ -1,0 +1,63 @@
+import { useState, useContext, useRef, useEffect } from "react";
+import axios from "axios";
+import { Context } from "../context";
+import { toast } from "react-toastify";
+import { useRouter } from "next/router";
+
+const ForgotPassword = () => {
+  const [email, setEmail] = useState("");
+  const [success, setSuccess] = useState(false);
+  const [code, setCode] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  //router
+  const router = useRouter();
+
+  //context
+  const {
+    state: { user },
+  } = useContext(Context);
+
+  useEffect(() => {
+    if (user !== null) {
+      router.push("/");
+    }
+  }, [user]);
+
+  //handle form submit
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      setLoading(true);
+      const { data } = await axios.post("/api/forgot-password", { email });
+      setSuccess(true);
+      toast("check your email for verification code");
+    } catch (err) {
+      console.log(err);
+      toast(err.response.data);
+    }
+  };
+
+  return (
+    <>
+      <div>
+        <form className="m-4 flex justify-center" onSubmit={handleSubmit}>
+          <input
+            className="rounded-l-lg p-4 border-t mr-0 border-b border-l text-gray-800 border-gray-200 bg-white"
+            placeholder="your@mail.com"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <button className="px-3 text-md rounded-r-lg bg-blue-500  text-gray-100 font-bold p-4  border-blue-500 border-t border-b border-r">
+            Reset Password
+          </button>
+        </form>
+      </div>
+    </>
+  );
+};
+
+export default ForgotPassword;
