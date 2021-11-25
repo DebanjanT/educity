@@ -16,40 +16,46 @@ export default function index() {
     setPlayedTime(ptm);
   };
   return (
-    <div>
+    <div data-theme="bumblebee">
       <Head>
         <title>Educity| City of learining</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
 
-      <section className="flex flex-col lg:flex-row bg-coolGray-100 text-coolGray-800">
+      <section className="flex flex-col lg:flex-row bg-neutral">
         <div className="container mx-auto flex flex-col items-center px-4 py-16 text-center md:py-32 md:px-10 lg:px-32 xl:max-w-3xl">
-          <p className="font-bold text-4xl lg:text-5xl mb-4">
+          <p className="font-bold text-4xl text-white lg:text-5xl mb-4">
             <span>🏠</span> City of{" "}
-            <span className="text-blue-600">Learning</span> <br />
+            <span className="text-primary">Learning</span> <br />
           </p>
-          <span className="text-blue-600 text-lg my-2">
+          <span className="text-coolGray-300 text-lg my-2">
             <code>[ @javascript / @Node.js / @any ]</code>
           </span>
 
           <div className="flex flex-wrap justify-center mt-4">
             <Link href="/signup">
-              <button className="px-8 py-3 m-2 text-lg font-semibold rounded bg-blue-500 text-coolGray-50 hover:bg-blue-700 transition-all ease-out duration-500 hover:scale-105 ">
-                Join Today
-              </button>
+              <div
+                data-tip="Register Today"
+                className="tooltip tooltip-bottom tooltip-info"
+              >
+                <button className=" shadow-lg px-8 py-3 m-2 text-lg font-semibold rounded bg-secondary text-coolGray-50 hover:bg-yellow-700 transition-all ease-out duration-500 hover:scale-105 ">
+                  Join Today
+                </button>
+              </div>
             </Link>
+
             <button
               type="button"
-              className="relative px-8 py-3 m-2 transition ease-out duration-500 hover:scale-105 overflow-hidden font-semibold rounded border hover:border shadow hover:border-2 hover:border-blue-500 "
+              className="relative shadow-lg text-white px-8 py-3 m-2 transition ease-out duration-500 hover:scale-105 overflow-hidden font-semibold rounded border hover:border shadow hover:border-2 hover:border-secondary "
             >
               Features
-              <span className="absolute top-0 right-0 px-5 py-1 text-xs tracking-wider text-center text-white shadow uppercase whitespace-no-wrap origin-bottom-left transform rotate-45 -translate-y-full translate-x-1/3 bg-blue-500">
+              <span className="absolute top-0 right-0 px-5 py-1 text-xs tracking-wider text-center text-white shadow uppercase whitespace-no-wrap origin-bottom-left transform rotate-45 -translate-y-full translate-x-1/3 bg-secondary">
                 Hot
               </span>
             </button>
           </div>
         </div>
-        <div className="order-first lg:order-last   w-auto object-contain lg:my-auto overflow-hidden rounded-none  border-none lg:rounded-xl shadow-sm transition-all ease-in duration-300 hover:scale-105 hover:shadow-xl  lg:mr-4 bg-gradient-to-r from-blue-600 via-blue-400 to-blue-600">
+        <div className="order-first lg:order-last  hidden lg:inline w-auto object-contain lg:my-auto overflow-hidden rounded-none  border-none lg:rounded-xl shadow-sm transition-all ease-in duration-300 hover:scale-105 hover:shadow-xl  lg:mr-4 bg-gradient-to-r from-secondary via-coolGray-100 to-secondary">
           <ReactPlayer
             url="https://misvecinos.s3.us-east-2.amazonaws.com/InVideo___Educitypprenderfs_1637429604700.mp4"
             className="rounded-full"
@@ -65,7 +71,7 @@ export default function index() {
           />
           {playedTime > 1 && (
             <div className="flex justify-center align-center items-center">
-              <p className="text-white text-center text-sm">
+              <p className="text-neutral text-center text-sm">
                 00:{playedTime < 10 && 0}
                 {playedTime}
               </p>
