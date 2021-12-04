@@ -57,7 +57,9 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [require("daisyui")],
+  plugins: [
+    require('@tailwindcss/typography'),
+    require("daisyui")],
   daisyui: {
     themes: [
       "bumblebee", // first one will be the default theme
