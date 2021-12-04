@@ -16,14 +16,14 @@ export default function index() {
     setPlayedTime(ptm);
   };
   return (
-    <div data-theme="bumblebee">
+    <div>
       <Head>
         <title>Educity| City of learining</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-
+  
       <section className="flex flex-col lg:flex-row bg-neutral">
-        <div className="container mx-auto flex flex-col items-center px-4 py-16 text-center md:py-32 md:px-10 lg:px-32 xl:max-w-3xl">
+        <div className="container mx-auto flex flex-col items-center px-4 py-14 text-center md:py-20 md:px-10 lg:px-32 xl:max-w-3xl">
         <div className="my-6 indicator">
   <div className="indicator-item badge badge-primary">Beta</div> 
           <p className="font-bold text-4xl text-white lg:text-5xl mb-4">
@@ -32,9 +32,17 @@ export default function index() {
           </p>
           </div>
           
-          <span className="text-coolGray-300 text-lg my-2">
-            <code>[ @javascript / @Node.js / @any ]</code>
-          </span>
+          <div className="mockup-code bg-accent-focus w-4/5 flex flex-col  items-start align-center">
+          <pre data-prefix="$">
+            <code>get it freeforever</code>
+          </pre> 
+          <pre data-prefix=">" className="text-warning">
+            <code>learning<span className="animate-pulse">...</span></code>
+          </pre> 
+          <pre data-prefix=">" className="text-success">
+            <code>Done!</code>
+          </pre>
+        </div>
 
           <div className="flex flex-wrap justify-center mt-4">
             <Link href="/signup">
@@ -48,15 +56,30 @@ export default function index() {
               </div>
             </Link>
 
-            <button
-              type="button"
-              className="relative shadow-lg text-white px-8 py-3 m-2 transition ease-out duration-500 hover:scale-105 overflow-hidden font-semibold rounded border hover:border shadow hover:border-2 hover:border-secondary "
+            <label for="my-modal-2"
+              
+              className="modal-button relative shadow-lg text-white px-8 py-3 m-2 transition ease-out duration-500 hover:scale-105 overflow-hidden font-semibold rounded border hover:border shadow hover:border-2 hover:border-secondary "
             >
-              Features
+              WHO ARE
               <span className="absolute top-0 right-0 px-5 py-1 text-xs tracking-wider text-center text-white shadow uppercase whitespace-no-wrap origin-bottom-left transform rotate-45 -translate-y-full translate-x-1/3 bg-secondary">
-                Hot
+                WE
               </span>
-            </button>
+            </label>
+
+            {/* who are we modal */}
+            <input type="checkbox" id="my-modal-2" class="modal-toggle"/>
+            <div class="modal">
+            <div class="modal-box rounded-md">
+              <p className="text-lg">We are building udemy like platform absolutely free , under development! </p>
+              <div class="modal-action">
+                <a href="mailto:debanjantewary.1997@gmail.com" for="my-modal-2" class="btn btn-primary"> ❤️ Contact</a> 
+                <label for="my-modal-2" class="btn">❌ Close</label>
+              </div>
+            </div>
+          </div>
+
+
+
           </div>
         </div>
         <div className="order-first lg:order-last  hidden lg:inline w-auto object-contain lg:my-auto overflow-hidden rounded-none  border-none lg:rounded-xl shadow-sm transition-all ease-in duration-300 hover:scale-105 hover:shadow-xl  lg:mr-4 bg-gradient-to-r from-secondary via-coolGray-100 to-secondary">
