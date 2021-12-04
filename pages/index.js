@@ -24,10 +24,14 @@ export default function index() {
 
       <section className="flex flex-col lg:flex-row bg-neutral">
         <div className="container mx-auto flex flex-col items-center px-4 py-16 text-center md:py-32 md:px-10 lg:px-32 xl:max-w-3xl">
+        <div className="my-6 indicator">
+  <div className="indicator-item badge badge-primary">Beta</div> 
           <p className="font-bold text-4xl text-white lg:text-5xl mb-4">
             <span>🏠</span> City of{" "}
             <span className="text-primary">Learning</span> <br />
           </p>
+          </div>
+          
           <span className="text-coolGray-300 text-lg my-2">
             <code>[ @javascript / @Node.js / @any ]</code>
           </span>
