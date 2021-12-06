@@ -52,7 +52,7 @@ export default function index() {
                 data-tip="Register Today"
                 className="tooltip tooltip-bottom tooltip-info"
               >
-                <button className=" shadow-lg px-8 py-3 m-2 text-lg font-semibold rounded bg-secondary text-accent-focus hover:bg-accent hover:text-coolGray-50 hover:border hover:border-primary transition-all ease-out duration-500 hover:scale-105 ">
+                <button className=" shadow-lg px-8 py-3 m-2 text-lg font-semibold rounded bg-coolGray-50 text-accent-focus hover:bg-accent hover:text-coolGray-50 hover:border hover:border-primary transition-all ease-out duration-500 hover:scale-105 ">
                   Join Today
                 </button>
               </div>
