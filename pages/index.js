@@ -105,22 +105,22 @@ export default function index() {
 
       <div className="flex items-center justify-center -mt-8 w-5/6 lg:w-full mx-auto ">
         <div className="relative flex flex-col items-center w-full max-w-6xl px-4 py-8 mx-auto text-center rounded-lg shadow-md lg:text-left lg:block bg-gradient-to-br from-primary  to-secondary sm:px-6 md:pb-0 md:pt-12 lg:px-12 lg:py-12">
-          <h2 className="my-4 text-3xl font-extrabold tracking-tight text-accent sm:text-4xl md:text-5xl lg:my-0 xl:text-4xl sm:leading-tight">
-            Infastructure that is{" "}
+          <h2 className="my-4 text-3xl font-extrabold tracking-tight text-accent sm:text-4xl md:text-5xl lg:my-0 xl:text-[2rem] sm:leading-tight">
+            Coding courses stack that is{" "}
             <span className="block text-accent/50 xl:inline">
               out of this world
             </span>
           </h2>
-          <p className="mt-1 mb-10 text-sm font-medium text-coolGray-600 uppercase xl:text-base xl:tracking-wider lg:mb-0">
+          <p className="mt-1 mb-10 text-sm font-medium text-accent-focus/50  uppercase xl:text-base xl:tracking-wider lg:mb-0">
             Pushing the envelope for being awesome!
           </p>
           <div className="flex mb-8 lg:mt-6 lg:mb-0">
             <div className="inline-flex">
               <a
                 href="#"
-                className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-indigo-700 transition duration-150 ease-in-out bg-white border border-transparent rounded-md hover:text-accent hover:bg-indigo-50 focus:outline-none focus:shadow-outline focus:border-indigo-300"
+                className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-accent transition duration-150 ease-in-out bg-white border border-transparent rounded-md hover:text-accent hover:bg-indigo-50 focus:outline-none focus:shadow-outline focus:border-indigo-300"
               >
-                Sign Up Today
+                Browse Courses
               </a>
             </div>
           </div>
@@ -139,7 +139,7 @@ export default function index() {
             <div className="flex justify-center w-full md:max-w-md md:mr-8 lg:mr-12">
               <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
               <lottie-player
-                src="https://assets5.lottiefiles.com/packages/lf20_1H7IW0.json"
+                src="anim/educity_lot.json"
                 background="transparent"
                 className="max-w-md min-w-sm"
                 speed="1"
@@ -149,31 +149,34 @@ export default function index() {
             </div>
 
             <div className="w-full max-w-md px-4 pb-10 text-xs text-center md:pb-0 sm:text-sm lg:text-base md:max-w-lg md:w-full md:text-left">
-              <h2 className="text-transparent text-2xl font-bold leading-snug sm:text-3xl md:text-4xl lg:text-5xl md:leading-tight md:mt-10 bg-clip-text bg-gradient-to-br from-accent-focus to-coolGray-500  ">
+              <h2 className="text-transparent text-3xl font-bold leading-snug sm:text-3xl md:text-4xl lg:text-5xl md:leading-tight md:mt-10 bg-clip-text bg-gradient-to-br from-accent-focus to-coolGray-500 pb-2  ">
                 Understanding the
                 <br />
-                customer journey.
+                developer's journey.
               </h2>
 
               <p className="mt-4 sm:mt-6 md:max-w-sm">
-                To succeed, one must have an unwavering desire to succeed amidst
-                fear of failure.
+                Reducing the hastle for developers searching free tutorial
+                videos in youtube and other platforms.
               </p>
 
-              <button className="flex justify-center w-full max-w-xs py-4 mx-auto mt-10 text-sm font-semibold text-coolGray-50 transition-all  bg-gradient-to-br from-primary to-secondary -rotate-6 rounded hover:shadow-lg  hover:bg-gradient-to-br hover:from-secondary hover:to-primary hover:scale-105 duration-400  hover:text-white  focus:text-white md:max-w-sm md:mx-0 hover:-rotate-3">
+              <button className="flex justify-center w-full max-w-xs py-4 mx-auto mt-10 text-sm font-semibold text-coolGray-50 transition-all  bg-gradient-to-br from-coolGray-600 to-accent/90 -rotate-6 rounded hover:shadow-lg  hover:bg-gradient-to-br hover:from-secondary hover:to-primary hover:scale-105 duration-400  hover:text-white  focus:text-white md:max-w-sm md:mx-0 hover:-rotate-3">
                 Contribute your knowledge
               </button>
 
               <hr className="my-10 border-2" />
 
               <p className="text-gray-700 text-md">
-                “Our conversion rates have gone up 12% since we start using this
-                platform! I highly recommend using this tool.”
+                “Developers have increased productivity by 20% using educity!
+                Join today its <strong>free!</strong>”
               </p>
 
-              <div className="mt-4">
-                <div className="self-center font-semibold text-gray-900">
-                  Debanjan Tewary, CEO of Educity
+              <div className="mt-4 flex justify-end ">
+                <div className="self-center  text-yellow-600 text-gray-900 flex flex-col">
+                  Debanjan Tewary,{" "}
+                  <span className="font-semibold text-accent">
+                    OWNER of Educity
+                  </span>
                 </div>
               </div>
             </div>

@@ -5,7 +5,7 @@ export const Footer = () => {
         <h1 className="text-[2rem] font-semibold mb-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 animate-bounce"
+            className="h-5 w-5 animate-bounce text-yellow-500"
             viewBox="0 0 20 20"
             fill="currentColor"
           >
