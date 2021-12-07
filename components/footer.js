@@ -16,7 +16,7 @@ export const Footer = () => {
         <p className="font-bold text-transparent bg-clip-text bg-gradient-to-br from-accent  to-accent-focus">
           Educity Communties
           <br />
-          Providing free courses
+          support@educity.cloud
         </p>
         <p>Copyright © 2022 - All right reserved</p>
       </div>
