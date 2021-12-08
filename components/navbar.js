@@ -93,7 +93,7 @@ const Nav = () => {
                 </button>
                 <div
                   tabindex="0"
-                  className="p-1 -mt-1 mr-[1px]  menu dropdown-content bg-gradient-to-r from-primary/70  via-coolGray-50 to-white  w-52  border-l-4 border-l-secondary "
+                  className="p-1 -mt-1 mr-[1px]  menu dropdown-content bg-gradient-to-r from-primary/70  via-coolGray-50 to-white  w-52  border-l-4 border-l-secondary z-50 backdrop-filter backdrop-blur-sm "
                 >
                   <Link href="/user">
                     <a className="btn btn-ghost btn-sm rounded-btn text-accent mb-1 capitalize ">
@@ -118,7 +118,7 @@ const Nav = () => {
                     </a>
                   </Link>
                   {user.role && user.role.includes("Instructor") ? (
-                    <Link href="/user">
+                    <Link href="/instructor/course/create">
                       <a className="btn btn-ghost btn-sm hover:bg-white hover:text-secondary rounded-btn text-accent mb-1 capitalize">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -138,7 +138,7 @@ const Nav = () => {
                       </a>
                     </Link>
                   ) : (
-                    <Link href="/user">
+                    <Link href="/user/become-instructor">
                       <a className="btn btn-ghost btn-sm hover:bg-white hover:text-secondary rounded-btn text-accent mb-1 capitalize ">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"

@@ -238,7 +238,7 @@ export default function index() {
           </div>
         </div>
       </section>
-      <div className="mt-3 -mb-6 rounded-full text-coolGray-100 z-50">
+      <div className="mt-3 -mb-6 rounded-full text-coolGray-100">
         <div className="container  mx-auto bg-gradient-to-br from-coolGray-700 to-accent-focus rounded-xl">
           <div className="flex flex-col p-6 col-span-full row-span-full lg:col-span-8 lg:p-10">
             <div className="flex justify-start">
