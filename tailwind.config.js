@@ -2,8 +2,11 @@ const colors = require("tailwindcss/colors");
 
 module.exports = {
   mode: "jit",
-  purge: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
-  darkMode: false, // or 'media' or 'class'
+  content: [
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+  ],
+  // or 'media' or 'class'
   theme: {
     extend: {
       animation: {
@@ -39,14 +42,14 @@ module.exports = {
         blue: colors.blue,
         cyan: colors.cyan,
         teal: colors.teal,
-        emerald: colors.emerald,
-        green: colors.green,
+
+        green: colors.emerald,
         lime: colors.lime,
         yellow: colors.yellow,
         amber: colors.amber,
         orange: colors.orange,
         red: colors.red,
-        warmGray: colors.warmGray,
+        stone: colors.stone,
         trueGray: colors.trueGray,
         gray: colors.gray,
         blueGray: colors.blueGray,
@@ -54,12 +57,8 @@ module.exports = {
       },
     },
   },
-  variants: {
-    extend: {},
-  },
-  plugins: [
-    require('@tailwindcss/typography'),
-    require("daisyui")],
+
+  plugins: [require("@tailwindcss/typography"), require("daisyui")],
   daisyui: {
     themes: [
       "bumblebee", // first one will be the default theme
