@@ -26,10 +26,12 @@ export default function index() {
         <div className="container mx-auto flex flex-col items-center px-4 py-14 text-center md:py-20 md:px-10 lg:px-32 xl:max-w-3xl">
           <p className="w-full leading-relaxed flex justify-center  align-center items-center font-bold text-2xl text-white lg:text-5xl mb-4">
             <span>
-              <kbd className="kbd kbd-lg text-accent bg-primary mr-3">⌥</kbd>{" "}
+              <kbd className="animate-bounce kbd kbd-lg text-accent bg-primary mr-3">
+                ⌥
+              </kbd>{" "}
             </span>{" "}
             City to learn{" "}
-            <span className="text-primary ml-2 -rotate-6 transition-all underline underline-offset-4 decoration-primary decoration-wavy hover:underline-offset-8">
+            <span className=" text-primary ml-2 -rotate-6 transition-all underline underline-offset-4 decoration-primary decoration-wavy hover:underline-offset-8">
               <code> Coding</code>
             </span>{" "}
             <br />
@@ -37,12 +39,13 @@ export default function index() {
 
           <div className="mockup-code bg-accent-focus w-4/5 lg:w-full flex flex-col  items-start align-center">
             <pre data-prefix="$">
-              <code>get it freeforever</code>
+              <code>
+                Learning started at port{" "}
+                <span className="text-green-500">8000</span>
+              </code>
             </pre>
             <pre data-prefix=">" className="text-warning">
-              <code>
-                learning<span className="animate-pulse">...</span>
-              </code>
+              <code>GET /learning 200 1.484 ms</code>
             </pre>
             <pre data-prefix=">" className="text-success">
               <code>Done!</code>
