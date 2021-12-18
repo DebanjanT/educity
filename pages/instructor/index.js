@@ -1,9 +1,9 @@
 import { useRouter } from "next/router";
 import { useContext, useEffect } from "react";
-import InstructorWrapper from "../../../components/wrapperRoutes/instructorWrapper";
-import { Context } from "../../../context";
+import InstructorWrapper from "../../components/wrapperRoutes/instructorWrapper";
+import { Context } from "../../context";
 
-const createCourse = () => {
+const instructorDashboard = () => {
   const router = useRouter();
 
   const { state: user } = useContext(Context);
@@ -12,7 +12,11 @@ const createCourse = () => {
     if (user == null) router.push("/");
   }, [user]);
 
-  return <InstructorWrapper>Create New course</InstructorWrapper>;
+  return (
+    <InstructorWrapper>
+      <div>ddsadsa</div>
+    </InstructorWrapper>
+  );
 };
 
-export default createCourse;
+export default instructorDashboard;

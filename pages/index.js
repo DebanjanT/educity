@@ -31,7 +31,7 @@ export default function index() {
               </kbd>{" "}
             </span>{" "}
             City to learn{" "}
-            <span className=" text-primary ml-2 -rotate-6 transition-all underline underline-offset-4 decoration-primary decoration-wavy hover:underline-offset-8">
+            <span className=" text-primary ml-2 -rotate-6 transition-all underline underline-offset-4  decoration-wavy hover:underline-offset-8">
               <code> Coding</code>
             </span>{" "}
             <br />
