@@ -10,7 +10,6 @@ import { useState } from "react";
 import TopBarProgress from "react-topbar-progress-indicator";
 
 function MyApp({ Component, pageProps }) {
-
   //top loading bar
   TopBarProgress.config({
     barColors: {
@@ -33,7 +32,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <Provider>
       {progress && <TopBarProgress />}
-      <ToastContainer position="top-right" autoClose={3000} />
+      <ToastContainer position="top-center" autoClose={3000} />
       <Nav />
       <Component {...pageProps} />
 

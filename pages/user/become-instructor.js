@@ -18,12 +18,6 @@ const becomeInstructor = () => {
     axios
       .post("/api/make-instructor")
       .then((res) => {
-        //saving updated user data to context
-        // dispatch({
-        //   type: "LOGIN",
-        //   payload: res.data,
-        // });
-
         window.location.href = res.data;
       })
       .catch((err) => {

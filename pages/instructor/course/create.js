@@ -1,18 +1,117 @@
 import { useRouter } from "next/router";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import InstructorWrapper from "../../../components/wrapperRoutes/instructorWrapper";
 import { Context } from "../../../context";
+import InstructorNav from "../../../components/instructor_nav";
+import axios from "axios";
+import CreateCourseForm from "../../../components/form/createCourseForm";
 
 const createCourse = () => {
   const router = useRouter();
 
-  const { state: user } = useContext(Context);
-  //preventing not loggeding user to rediirect
-  useEffect(() => {
-    if (user == null) router.push("/");
-  }, [user]);
+  const {
+    state: { user },
+  } = useContext(Context);
 
-  return <InstructorWrapper>Create New course</InstructorWrapper>;
+  //course details structure , defining default values
+  const [values, setValues] = useState({
+    name: "",
+    description: "",
+    category: "",
+    price: "500",
+    paid: true,
+    uploading: false,
+    loading: false,
+    imagePreview: "",
+  });
+
+  //handling value changes on form
+  const handleChange = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
+
+  //handle image upload from form
+  const handleImageUpload = () => {
+    //
+  };
+
+  //handle form submit
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(values);
+  };
+
+  return (
+    <InstructorWrapper>
+      <InstructorNav />
+
+      {/* breadcrumbs */}
+      <div class="text-sm breadcrumbs w-4/5 mx-auto flex justify-center -mt-3">
+        <ul>
+          <li>
+            <a>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                />
+              </svg>
+              Instructor Dashboard
+            </a>
+          </li>
+
+          <li className="text-secondary">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              class="w-4 h-4 mr-2 stroke-current"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+              ></path>
+            </svg>
+            Create New course
+          </li>
+        </ul>
+      </div>
+
+      <div className="mx-auto w-full">
+        <h1 className="text-center mt-4 mb-3 text-xl  text-accent">
+          Create Your Course
+        </h1>
+
+        {/* course creation form */}
+        <div className="grid grid-col-1 lg:grid-cols-3 gap-2  ">
+          <div className="col-span-1 pl-4 ">
+            <p className="text-gray-500">
+              Please read community guidelines carefully before creating courses
+            </p>
+          </div>
+          {/* course creation form component */}
+          <CreateCourseForm
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+            handleImageUpload={handleImageUpload}
+            values={values}
+            setValues={setValues}
+          />
+          <pre>{JSON.stringify(values, null, 4)}</pre>
+        </div>
+      </div>
+    </InstructorWrapper>
+  );
 };
 
 export default createCourse;

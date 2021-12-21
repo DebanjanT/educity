@@ -16,7 +16,7 @@ const InstructorWrapper = ({ children }) => {
     } catch (err) {
       console.log(err);
       setSecure(false);
-      router.push("/");
+      router.push("/login");
     }
   };
   useEffect(() => {
