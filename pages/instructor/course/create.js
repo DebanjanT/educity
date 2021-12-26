@@ -5,6 +5,8 @@ import { Context } from "../../../context";
 import InstructorNav from "../../../components/instructor_nav";
 import axios from "axios";
 import CreateCourseForm from "../../../components/form/createCourseForm";
+import Resizer from "react-image-file-resizer";
+import { toast } from "react-toastify";
 
 const createCourse = () => {
   const router = useRouter();
@@ -22,17 +24,46 @@ const createCourse = () => {
     paid: true,
     uploading: false,
     loading: false,
-    imagePreview: "",
   });
+
+  //to display image preview
+  const [imgPreview, setImgPreview] = useState();
+
+  //image state for storing resized image
+  const [image, setImage] = useState("");
 
   //handling value changes on form
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
-  //handle image upload from form
-  const handleImageUpload = () => {
-    //
+  //handle image upload from form, resize, and upload to aws s3
+  const handleImageUpload = (e) => {
+    let user_uploaded_image = e.target.files[0];
+    setImgPreview(window.URL.createObjectURL(user_uploaded_image));
+    setValues({ ...values, loading: true });
+
+    //resizing image from client side
+    Resizer.imageFileResizer(
+      user_uploaded_image,
+      720,
+      500,
+      "JPEG",
+      100,
+      0,
+      async (uri) => {
+        try {
+          const { data } = await axios.post("/api/course/image-upload", {
+            image: uri,
+          });
+          console.log("Image upload data", data);
+        } catch (err) {
+          console.log(err);
+          setValues({ ...values, loading: false });
+          toast.error("Image upload failed! Contact suppot team ❤️");
+        }
+      }
+    );
   };
 
   //handle form submit
@@ -106,6 +137,7 @@ const createCourse = () => {
             handleImageUpload={handleImageUpload}
             values={values}
             setValues={setValues}
+            imgPreview={imgPreview}
           />
           <pre>{JSON.stringify(values, null, 4)}</pre>
         </div>

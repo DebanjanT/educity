@@ -6,6 +6,7 @@ const CreateCourseForm = ({
   handleSubmit,
   values,
   setValues,
+  imgPreview,
 }) => {
   let priceChildren = [];
   for (let i = 500; i <= 6500; i += 1000) {
@@ -96,6 +97,7 @@ const CreateCourseForm = ({
               hidden
             />
           </label>
+
           <p className="ml-2">
             {values.loading ? (
               <>
@@ -113,12 +115,25 @@ const CreateCourseForm = ({
                     d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                   />
                 </svg>
-                <p>Uploading Image...</p>
+                <p className="text-center">Uploading Image...</p>
               </>
             ) : (
-              "Upload Image"
+              "Upload Course Image"
             )}
           </p>
+        </div>
+        <div>
+          {/* image preview div */}
+          {imgPreview && (
+            <>
+              <div className="w-60 h-40">
+                <img
+                  className="w-60 h-40 rounded-lg shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                  src={imgPreview}
+                />
+              </div>
+            </>
+          )}
         </div>
 
         <button
