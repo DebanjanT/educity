@@ -7,11 +7,13 @@ const CreateCourseForm = ({
   values,
   setValues,
   imgPreview,
+  removeCourseImage,
 }) => {
   let priceChildren = [];
   for (let i = 500; i <= 6500; i += 1000) {
     priceChildren.push(<option key={i.toFixed(2)}>{i.toFixed(2)}</option>);
   }
+
   return (
     <div className="col-span-2 form-control">
       <form onSubmit={handleSubmit}>
@@ -77,15 +79,15 @@ const CreateCourseForm = ({
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="h-6 w-6"
+              className="h-6 w-6"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"
               />
             </svg>
@@ -109,13 +111,13 @@ const CreateCourseForm = ({
                   stroke="currentColor"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                   />
                 </svg>
-                <p className="text-center">Uploading Image...</p>
+                <p className="text-center">Please wait...</p>
               </>
             ) : (
               "Upload Course Image"
@@ -126,9 +128,20 @@ const CreateCourseForm = ({
           {/* image preview div */}
           {imgPreview && (
             <>
-              <div className="w-60 h-40">
+              <div className="indicator">
+                <button
+                  className="indicator-item badge badge-primary shadow-md"
+                  onClick={removeCourseImage}
+                  type="button"
+                >
+                  x
+                </button>
                 <img
-                  className="w-60 h-40 rounded-lg shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                  className={
+                    values.loading
+                      ? "w-60 h-40 rounded-lg shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl border-2 border-primary animate-pulse"
+                      : "w-60 h-40 rounded-lg shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl border-2 border-primary "
+                  }
                   src={imgPreview}
                 />
               </div>
@@ -156,9 +169,9 @@ const CreateCourseForm = ({
             stroke="currentColor"
           >
             <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               d="M11.933 12.8a1 1 0 000-1.6L6.6 7.2A1 1 0 005 8v8a1 1 0 001.6.8l5.333-4zM19.933 12.8a1 1 0 000-1.6l-5.333-4A1 1 0 0013 8v8a1 1 0 001.6.8l5.333-4z"
             />
           </svg>

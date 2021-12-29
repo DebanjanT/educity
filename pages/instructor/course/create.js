@@ -27,10 +27,10 @@ const createCourse = () => {
   });
 
   //to display image preview
-  const [imgPreview, setImgPreview] = useState();
+  const [imgPreview, setImgPreview] = useState("");
 
   //image state for storing resized image
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState({});
 
   //handling value changes on form
   const handleChange = (e) => {
@@ -56,7 +56,9 @@ const createCourse = () => {
           const { data } = await axios.post("/api/course/image-upload", {
             image: uri,
           });
-          console.log("Image upload data", data);
+          setImage(data);
+          setValues({ ...values, loading: false });
+          console.log(data);
         } catch (err) {
           console.log(err);
           setValues({ ...values, loading: false });
@@ -66,10 +68,38 @@ const createCourse = () => {
     );
   };
 
+  //send an api request to backend
+  //with current image state
+  //find image at aws with Key
+  //remove and send respnse
+  const removeCourseImage = async () => {
+    try {
+      setValues({ ...values, loading: true });
+      const { data } = await axios.post("/api/course/image-remove", { image });
+      setImage({});
+      setImgPreview("");
+      setValues({ ...values, loading: false });
+    } catch (err) {
+      console.log(err);
+      setValues({ ...values, loading: false });
+      toast.error("Problem removing image , Contact Support");
+    }
+  };
+
   //handle form submit
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(values);
+    try {
+      const { data } = await axios.post("/api/course/create-new-course", {
+        ...values,
+        image,
+      });
+      router.push("/instructor");
+      toast.success("Continue adding lessions");
+    } catch (err) {
+      console.log(err);
+      toast.error(err.response.data);
+    }
   };
 
   return (
@@ -77,21 +107,21 @@ const createCourse = () => {
       <InstructorNav />
 
       {/* breadcrumbs */}
-      <div class="text-sm breadcrumbs w-4/5 mx-auto flex justify-center -mt-3">
+      <div className="text-sm breadcrumbs w-4/5 mx-auto flex justify-center -mt-3">
         <ul>
           <li>
             <a>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-4 w-4"
+                className="h-4 w-4"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
                 />
               </svg>
@@ -104,12 +134,12 @@ const createCourse = () => {
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              class="w-4 h-4 mr-2 stroke-current"
+              className="w-4 h-4 mr-2 stroke-current"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
               ></path>
             </svg>
@@ -138,8 +168,11 @@ const createCourse = () => {
             values={values}
             setValues={setValues}
             imgPreview={imgPreview}
+            removeCourseImage={removeCourseImage}
           />
           <pre>{JSON.stringify(values, null, 4)}</pre>
+          <hr />
+          <pre>{JSON.stringify(image, null, 4)}</pre>
         </div>
       </div>
     </InstructorWrapper>

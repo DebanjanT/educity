@@ -30,8 +30,8 @@ const StripeCallback = () => {
   return (
     <div className="min-h-screen ">
       <div className="container flex flex-col align-center items-center justify-center mx-auto">
-        <div class="alert alert-info mt-6">
-          <div class="flex-1">
+        <div className="alert alert-info mt-6">
+          <div className="flex-1">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -39,9 +39,9 @@ const StripeCallback = () => {
               className="w-6 h-6 mx-2 stroke-current animate-bounce"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
               ></path>
             </svg>
@@ -58,9 +58,9 @@ const StripeCallback = () => {
           stroke="currentColor"
         >
           <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
             d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"
           />
         </svg>

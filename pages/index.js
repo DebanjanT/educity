@@ -80,23 +80,23 @@ export default function index() {
             </label>
 
             {/* who are we modal */}
-            <input type="checkbox" id="my-modal-2" class="modal-toggle" />
-            <div class="modal">
-              <div class="modal-box rounded-md">
+            <input type="checkbox" id="my-modal-2" className="modal-toggle" />
+            <div className="modal">
+              <div className="modal-box rounded-md">
                 <p className="text-lg">
                   We are building udemy like platform absolutely free , under
                   development!{" "}
                 </p>
-                <div class="modal-action">
+                <div className="modal-action">
                   <a
                     href="mailto:debanjantewary.1997@gmail.com"
                     for="my-modal-2"
-                    class="btn btn-primary"
+                    className="btn btn-primary"
                   >
                     {" "}
                     ❤️ Contact
                   </a>
-                  <label for="my-modal-2" class="btn">
+                  <label for="my-modal-2" className="btn">
                     ❌ Close
                   </label>
                 </div>
@@ -109,9 +109,9 @@ export default function index() {
       <div className="flex items-center justify-center -mt-8 w-5/6 lg:w-full mx-auto ">
         <div className="relative flex flex-col items-center w-full max-w-6xl px-4 py-8 mx-auto text-center rounded-lg shadow-md lg:text-left lg:block bg-gradient-to-br from-primary  to-secondary sm:px-6 md:pb-0 md:pt-12 lg:px-12 lg:py-12">
           <h2 className="my-4 text-3xl font-extrabold tracking-tight text-accent sm:text-4xl md:text-5xl lg:my-0 xl:text-[2rem] sm:leading-tight">
-            Coding courses stack that is{" "}
-            <span className="block text-accent/50 xl:inline">
-              out of this world
+            Delicious Tiffin Service{" "}
+            <span className="block text-accent/50 xl:inline text-lg">
+              BEAT THE HUNGER WHILE CODING
             </span>
           </h2>
           <p className="mt-1 mb-10 text-sm font-medium text-accent-focus/50  uppercase xl:text-base xl:tracking-wider lg:mb-0">
@@ -123,7 +123,7 @@ export default function index() {
                 href="#"
                 className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-accent transition duration-150 ease-in-out bg-white border border-transparent rounded-md hover:text-accent hover:bg-indigo-50 focus:outline-none focus:shadow-outline focus:border-indigo-300"
               >
-                Browse Courses
+                View All Dishes
               </a>
             </div>
           </div>
