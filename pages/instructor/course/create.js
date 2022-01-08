@@ -57,6 +57,7 @@ const createCourse = () => {
             image: uri,
           });
           setImage(data);
+          // console.log(uploadProgress);
           setValues({ ...values, loading: false });
           console.log(data);
         } catch (err) {

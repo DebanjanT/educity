@@ -54,15 +54,6 @@ export default function Signup() {
       <div className="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8 mx-auto">
           <div className="flex flex-col justify-center items-center align-center">
-            <Image
-              className="shadow-lg rounded-full"
-              src="https://misvecinos.s3.amazonaws.com/media/profile_pictures/PPR04360_1NokUbz.jpg"
-              alt="Workflow"
-              height="100"
-              width="100"
-              layout="fixed"
-              objectFit="cover"
-            />
             <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
               Register Your Account
             </h2>

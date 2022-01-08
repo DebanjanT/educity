@@ -8,6 +8,8 @@ import "../styles/globals.css";
 import Router from "next/router";
 import { useState } from "react";
 import TopBarProgress from "react-topbar-progress-indicator";
+import { Offline } from "react-detect-offline";
+import OfflineIndicator from "../components/internet/offlineIndicator";
 
 function MyApp({ Component, pageProps }) {
   //top loading bar
@@ -32,6 +34,9 @@ function MyApp({ Component, pageProps }) {
   return (
     <Provider>
       {progress && <TopBarProgress />}
+      <Offline>
+        <OfflineIndicator />
+      </Offline>
       <ToastContainer position="top-center" autoClose={3000} />
       <Nav />
       <Component {...pageProps} />

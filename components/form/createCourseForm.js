@@ -11,7 +11,11 @@ const CreateCourseForm = ({
 }) => {
   let priceChildren = [];
   for (let i = 500; i <= 6500; i += 1000) {
-    priceChildren.push(<option key={i.toFixed(2)}>{i.toFixed(2)}</option>);
+    priceChildren.push(
+      <option selected={values.price} key={i.toFixed(2)}>
+        {i.toFixed(2)}
+      </option>
+    );
   }
 
   return (

@@ -1,11 +1,15 @@
 import Link from "next/link";
 import Head from "next/head";
 import Typewriter from "typewriter-effect";
-import ReactPlayer from "react-player";
+import { useContext } from "react";
 import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
+import { Context } from "../context";
 
 export default function index() {
+  const {
+    state: { user },
+  } = useContext(Context);
   const [playedTime, setPlayedTime] = useState(null);
   const previewClick = () => {
     toast.success("Playing Educity Intro");
@@ -57,16 +61,29 @@ export default function index() {
               <div className="indicator-item badge badge-accent mr-6 mt-3">
                 Beta
               </div>
-              <Link href="/signup">
-                <div
-                  data-tip="Register Today"
-                  className="tooltip tooltip-bottom tooltip-info"
-                >
-                  <button className=" shadow-lg px-8 py-3 m-2 text-lg font-semibold rounded bg-coolGray-50 text-accent-focus hover:bg-accent hover:text-coolGray-50 hover:border hover:border-primary transition-all ease-out duration-500 hover:scale-105 ">
-                    Join Today
-                  </button>
-                </div>
-              </Link>
+              {user ? (
+                <Link href="/user">
+                  <div
+                    data-tip="Visit Profile"
+                    className="tooltip tooltip-bottom tooltip-info"
+                  >
+                    <button className=" shadow-lg px-8 py-3 m-2 text-lg font-semibold rounded bg-coolGray-50 text-accent-focus hover:bg-accent hover:text-coolGray-50 hover:border hover:border-primary transition-all ease-out duration-500 hover:scale-105 ">
+                      Profile
+                    </button>
+                  </div>
+                </Link>
+              ) : (
+                <Link href="/signup">
+                  <div
+                    data-tip="Register Today"
+                    className="tooltip tooltip-bottom tooltip-info"
+                  >
+                    <button className=" shadow-lg px-8 py-3 m-2 text-lg font-semibold rounded bg-coolGray-50 text-accent-focus hover:bg-accent hover:text-coolGray-50 hover:border hover:border-primary transition-all ease-out duration-500 hover:scale-105 ">
+                      Join Today
+                    </button>
+                  </div>
+                </Link>
+              )}
             </div>
 
             <label

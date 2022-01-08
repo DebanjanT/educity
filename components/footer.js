@@ -1,6 +1,6 @@
 export const Footer = () => {
   return (
-    <footer className="p-10 footer bg-coolGray-200 text-primary-content footer-center z-40">
+    <footer className="p-10 footer bg-coolGray-200 text-primary-content footer-center z-40 mt-6">
       <div>
         <h1 className="text-[2rem] font-semibold mb-2">
           <svg

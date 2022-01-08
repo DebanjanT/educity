@@ -3,7 +3,7 @@ import Link from "next/link";
 const InstructorNav = () => {
   return (
     <>
-      <div className="mx-auto w-full sm:w-full lg:w-4/5 flex justify-center align-center items-center  ">
+      <div className="mx-auto w-full sm:w-full lg:w-4/5 flex justify-center align-center items-center">
         <div className="pt-4 ">
           <ul className="menu items-stretch w-full px-4  horizontal text-sm ">
             <li className=" text-xs  btn transition-all duration-200 hover:scale-105 mr-2">
@@ -49,7 +49,7 @@ const InstructorNav = () => {
           </ul>
         </div>
       </div>
-      <div className="divider w-4/5 mx-auto"></div>
+      <div className="w-full lg:w-4/5 mx-auto border-t-2 border-dashed my-6"></div>
       <div></div>
     </>
   );

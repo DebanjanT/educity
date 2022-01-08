@@ -1,17 +1,30 @@
-const AddLessonForm = ({
-  handleAdd,
-  values,
-  setValues,
-  uploading,
-  course,
-  uploadVideoText,
-  handleLessonVideo,
-  uploadProgress,
-  handleRemoveLessonVideo,
+import ReactPlayer from "react-player";
+import { toast } from "react-toastify";
+
+const UpdateLessonForm = ({
+  lesson,
+  handleVideo,
+  progress,
+  handleUpdateLesson,
+  updatingLesson,
+  setCurrentLesson,
 }) => {
+  const handleFreePreview = (e) => {
+    let fp = e.target.value;
+    if (fp == "true") {
+      setCurrentLesson({ ...lesson, free_preview: true });
+    } else if (fp == "false") {
+      setCurrentLesson({ ...lesson, free_preview: false });
+    } else {
+      toast.error("Opps! Something went wrong");
+    }
+  };
   return (
     <>
-      <p className="flex align-center items-center">
+      {/* <pre className="text-xs overflow-scroll">
+        {JSON.stringify(lesson, null, 4)}
+      </pre> */}
+      <p className="flex align-center items-center text-blue-500">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-5 w-5 mr-2"
@@ -24,24 +37,22 @@ const AddLessonForm = ({
             clip-rule="evenodd"
           />
         </svg>
-        Add Lesson
+        Update Lesson
       </p>
       <hr className="mt-2" />
 
-      <p className="flex justify-center text-accent text-sm mt-1 bg-primary rounded-full shadow-md py-1 my-2">
-        {course.title}
-      </p>
-
-      <form onSubmit={handleAdd}>
+      <form onSubmit={handleUpdateLesson}>
         <div className="form-control mt-2">
           <label className="input-group">
-            <span>Lesson Title</span>
+            <span className="text-sm flex-shrink-0">Lesson Title</span>
             <input
               type="text"
-              value={values.title}
-              onChange={(e) => setValues({ ...values, title: e.target.value })}
+              value={lesson.title}
+              onChange={(e) =>
+                setCurrentLesson({ ...lesson, title: e.target.value })
+              }
               placeholder="Enter your lesson title"
-              class="input input-bordered input-sm input-primary text-accent-focus"
+              className="input input-bordered input-sm w-full input-primary text-accent-focus"
             />
           </label>
         </div>
@@ -51,16 +62,25 @@ const AddLessonForm = ({
             <span>Description</span>
             <input
               type="text"
-              value={values.content}
+              value={lesson.content}
               onChange={(e) =>
-                setValues({ ...values, content: e.target.value })
+                setCurrentLesson({ ...lesson, content: e.target.value })
               }
               placeholder="What does this lesson explain to user?"
               className="input input-bordered input-md  input-primary text-accent-focus"
             />
           </label>
         </div>
-
+        {lesson && lesson.video && lesson.video.Location && (
+          <div className="shadow-lg mt-2">
+            <ReactPlayer
+              url={lesson.video.Location}
+              width="100%"
+              height="100%"
+              controls
+            />
+          </div>
+        )}
         <div className="mt-3 ">
           <div className="flex">
             <label
@@ -72,8 +92,8 @@ const AddLessonForm = ({
                 type="file"
                 accept="video/*"
                 className="hidden"
-                disabled={uploading}
-                onChange={handleLessonVideo}
+                disabled={updatingLesson}
+                onChange={handleVideo}
               />
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -85,13 +105,13 @@ const AddLessonForm = ({
                 <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
               </svg>
             </label>
-            {uploadVideoText}
-            {values.video.Location && (
+            {lesson && lesson.video && lesson.video.Location}
+            {lesson && lesson.video && lesson.video.Location && (
               <button
                 className="ml-2 text-red-500 tooltip cursor-pointer "
                 data-tip="Delete Video"
-                onClick={handleRemoveLessonVideo}
-                disabled={uploading}
+                onClick={() => alert("dsads")}
+                disabled={updatingLesson}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -110,10 +130,21 @@ const AddLessonForm = ({
               </button>
             )}
           </div>
-          {uploadProgress > 0 && (
+          <select
+            onChange={(e) => handleFreePreview(e)}
+            value={lesson.free_preview}
+            className="select select-bordered select-sm select-secondary w-full lg:w-4/5 mt-3  rounded-none lg:rounded-lg"
+          >
+            <option value={false} selected>
+              Paid Lesson
+            </option>
+            <option value={true}>Free Lesson</option>
+          </select>
+
+          {progress > 0 && (
             <progress
               className="progress progress-success"
-              value={uploadProgress}
+              value={progress}
               max="100"
             ></progress>
           )}
@@ -121,10 +152,10 @@ const AddLessonForm = ({
 
         <div className="modal-action">
           <button
-            className="btn btn-primary normal-case"
-            disabled={!values.title || !values.content || uploading}
+            className="btn btn-sm btn-primary normal-case"
+            disabled={!lesson.title || !lesson.content || updatingLesson}
           >
-            {uploading ? (
+            {updatingLesson ? (
               <>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -144,8 +175,8 @@ const AddLessonForm = ({
               "Save Lesson"
             )}
           </button>
-          <label for="add-lesson-modal" className="btn normal-case">
-            Cancel
+          <label for="lessonUpdateModal" className="btn btn-sm">
+            Close
           </label>
         </div>
       </form>
@@ -154,4 +185,4 @@ const AddLessonForm = ({
   );
 };
 
-export default AddLessonForm;
+export default UpdateLessonForm;

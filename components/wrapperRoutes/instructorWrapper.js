@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 
 const InstructorWrapper = ({ children }) => {
   const [secure, setSecure] = useState(false);
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
   //make request to current user verify api
   const fetchInstructor = async () => {
@@ -12,6 +13,7 @@ const InstructorWrapper = ({ children }) => {
 
       if (data.secure) {
         setSecure(true);
+        setLoading(false);
       }
     } catch (err) {
       console.log(err);
@@ -23,6 +25,22 @@ const InstructorWrapper = ({ children }) => {
     fetchInstructor();
   }, []);
 
-  return <>{secure && <>{children}</>}</>;
+  return (
+    <>
+      {loading ? (
+        <>
+          <div className="flex items-center justify-center space-x-2 mt-6 min-h-screen">
+            <div className="w-4 h-4 rounded-full animate-pulse bg-primary"></div>
+            <div className="w-4 h-4 rounded-full animate-pulse bg-primary"></div>
+            <div className="w-4 h-4 rounded-full animate-pulse bg-primary"></div>
+
+            <h3>Security Checking...</h3>
+          </div>
+        </>
+      ) : (
+        secure && <>{children}</>
+      )}
+    </>
+  );
 };
 export default InstructorWrapper;
