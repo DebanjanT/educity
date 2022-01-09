@@ -3,11 +3,13 @@ import { toast } from "react-toastify";
 
 const UpdateLessonForm = ({
   lesson,
-  handleVideo,
+  handleLessonVideoUpload,
+  handleLessonVideoDelete,
   progress,
   handleUpdateLesson,
   updatingLesson,
   setCurrentLesson,
+  uploadVideoText,
 }) => {
   const handleFreePreview = (e) => {
     let fp = e.target.value;
@@ -24,21 +26,32 @@ const UpdateLessonForm = ({
       {/* <pre className="text-xs overflow-scroll">
         {JSON.stringify(lesson, null, 4)}
       </pre> */}
-      <p className="flex align-center items-center text-blue-500">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-5 w-5 mr-2"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
-            clip-rule="evenodd"
-          />
-        </svg>
-        Update Lesson
-      </p>
+      <div className="flex justify-between">
+        <p className="flex align-center items-center text-blue-500">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5 mr-2"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          Update Lesson
+        </p>
+        {lesson && lesson.free_preview ? (
+          <div class="badge badge-md bg-green-500 border-green-500 shadow-md shadow-green-400">
+            Free Lesson
+          </div>
+        ) : (
+          <div class="badge badge-md bg-red-500 border-red-500 shadow-md shadow-red-400">
+            Paid Lesson
+          </div>
+        )}
+      </div>
       <hr className="mt-2" />
 
       <form onSubmit={handleUpdateLesson}>
@@ -92,8 +105,10 @@ const UpdateLessonForm = ({
                 type="file"
                 accept="video/*"
                 className="hidden"
-                disabled={updatingLesson}
-                onChange={handleVideo}
+                disabled={
+                  updatingLesson || (lesson.video && lesson.video.Location)
+                }
+                onChange={handleLessonVideoUpload}
               />
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -105,12 +120,15 @@ const UpdateLessonForm = ({
                 <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
               </svg>
             </label>
-            {lesson && lesson.video && lesson.video.Location}
+            {lesson && lesson.video && lesson.video.Location
+              ? "Lesson has video"
+              : uploadVideoText}
+
             {lesson && lesson.video && lesson.video.Location && (
               <button
                 className="ml-2 text-red-500 tooltip cursor-pointer "
                 data-tip="Delete Video"
-                onClick={() => alert("dsads")}
+                onClick={handleLessonVideoDelete}
                 disabled={updatingLesson}
               >
                 <svg
@@ -138,7 +156,7 @@ const UpdateLessonForm = ({
             <option value={false} selected>
               Paid Lesson
             </option>
-            <option value={true}>Free Lesson</option>
+            <option value={true}>Preview : Free to watch </option>
           </select>
 
           {progress > 0 && (
@@ -172,7 +190,7 @@ const UpdateLessonForm = ({
                 Please wait...
               </>
             ) : (
-              "Save Lesson"
+              "Update Lesson"
             )}
           </button>
           <label for="lessonUpdateModal" className="btn btn-sm">

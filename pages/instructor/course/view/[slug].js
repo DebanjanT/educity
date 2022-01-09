@@ -5,6 +5,7 @@ import InstructorNav from "../../../../components/instructor_nav";
 import InstructorWrapper from "../../../../components/wrapperRoutes/instructorWrapper";
 import AddLessonForm from "../../../../components/form/addLessonForm";
 import { toast } from "react-toastify";
+import ReactPlayer from "react-player";
 
 const CourseView = () => {
   const [course, setCourse] = useState();
@@ -311,6 +312,21 @@ const CourseView = () => {
                           </span>
                         </div>
                         <div className="collapse-content text-gray-800">
+                          {lesson && lesson.video && lesson.video.Location && (
+                            <div className="shadow-xl  mt-2">
+                              <ReactPlayer
+                                url={lesson.video.Location}
+                                width="100%"
+                                height="100%"
+                                config={{
+                                  youtube: {
+                                    playerVars: { showinfo: 1 },
+                                  },
+                                }}
+                                controls
+                              />
+                            </div>
+                          )}
                           <p>{lesson.content}</p>
                         </div>
                       </div>

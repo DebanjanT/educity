@@ -5,6 +5,8 @@ import { Context } from "../../context";
 import InstructorNav from "../../components/instructor_nav";
 import axios from "axios";
 import Link from "next/link";
+import Footer from "../../components/footer";
+import DrawerWrapper from "../../components/wrapperRoutes/DrawerWrapper";
 
 const instructorDashboard = () => {
   const router = useRouter();
@@ -28,107 +30,109 @@ const instructorDashboard = () => {
 
   return (
     <InstructorWrapper>
-      <InstructorNav />
+      <DrawerWrapper>
+        <InstructorNav />
 
-      {/* <pre>{JSON.stringify(courses, null, 4)}</pre> */}
-      {/* course single ui */}
-      <div className="w-full lg:w-4/5 mx-auto mb-6 flex justify-center">
-        <h3 className="text-lg font-semibold flex">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 mr-1"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-            />
-          </svg>
-          Instructor Courses
-        </h3>
-      </div>
-      <div className="w-4/5 mx-auto grid justify-center grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 ">
-        {courses ? (
-          courses.map((course) => (
-            <a
-              key={course.slug}
-              className="flex-shrink-0 w-full mx-auto group hover:no-underline focus:no-underline dark:bg-white rounded-md shadow  transition-all duration-300 hover:scale-105 hover:shadow-lg"
+        {/* <pre>{JSON.stringify(courses, null, 4)}</pre> */}
+        {/* course single ui */}
+        <div className="w-full lg:w-4/5 mx-auto mb-6 flex justify-center">
+          <h3 className="text-lg font-semibold flex">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6 mr-1"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
             >
-              {course.image && course.image.Location && (
-                <img
-                  role="presentation"
-                  className="object-cover w-full rounded-t-md h-44 dark:bg-coolGray-500"
-                  src={course.image.Location}
-                />
-              )}
-
-              <div className="p-6 space-y-2">
-                <h3 className="text-sm font-semibold  group-focus:underline">
-                  {course.title}
-                </h3>
-                <p className="text-gray-500 pb-4 text-sm ">
-                  {course.createdAt}
-                </p>
-
-                {/* <p className="text-gray-600">{course.description}</p> */}
-                <div className="flex justify-end mt-4">
-                  {course.lessons.length < 1 ? (
-                    <p className="text-red-500 text-xs">
-                      You need atleast 1 lesson to publish your course
-                    </p>
-                  ) : course.published ? (
-                    <p className="text-blue-500 font-semibold text-sm">
-                      Your course is already live on educity
-                    </p>
-                  ) : (
-                    <a className="bg-accent hover:bg-accent/70 text-gray-100 py-1 px-3 text-sm rounded-md cursor-pointer">
-                      Publish
-                    </a>
-                  )}
-                  <Link href={`/instructor/course/view/${course.slug}`}>
-                    <a className="bg-primary hover:bg-primary/70 text-accent py-1 px-3 text-sm rounded-md ml-2 cursor-pointer">
-                      View
-                    </a>
-                  </Link>
-                </div>
-              </div>
-            </a>
-          ))
-        ) : (
-          <>
-            <Link href="/instructor/course/create">
-              <div
-                className="w-full mx-auto cursor-pointer tooltip tooltip-bottom lg:tooltip"
-                data-tip="Create New Course"
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+              />
+            </svg>
+            Instructor Courses
+          </h3>
+        </div>
+        <div className="w-4/5 mx-auto grid justify-center grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 ">
+          {courses ? (
+            courses.map((course) => (
+              <a
+                key={course.slug}
+                className="flex-shrink-0 w-full mx-auto group hover:no-underline focus:no-underline dark:bg-white rounded-md shadow  transition-all duration-300 hover:scale-105 hover:shadow-lg"
               >
-                <div className="border-2 border-dashed hover:border-accent group rounded-lg w-52 h-60 mx-auto flex flex-col justify-center items-center">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6 text-gray-500 mb-1 group-hover:text-accent"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                  <p className="text-gray-500 group-hover:text-secondary">
-                    Add Course
+                {course.image && course.image.Location && (
+                  <img
+                    role="presentation"
+                    className="object-cover w-full rounded-t-md h-44 dark:bg-coolGray-500"
+                    src={course.image.Location}
+                  />
+                )}
+
+                <div className="p-6 space-y-2">
+                  <h3 className="text-sm font-semibold  group-focus:underline">
+                    {course.title}
+                  </h3>
+                  <p className="text-gray-500 pb-4 text-sm ">
+                    {course.createdAt}
                   </p>
+
+                  {/* <p className="text-gray-600">{course.description}</p> */}
+                  <div className="flex justify-end mt-4">
+                    {course.lessons.length < 1 ? (
+                      <p className="text-red-500 text-xs">
+                        You need atleast 1 lesson to publish your course
+                      </p>
+                    ) : course.published ? (
+                      <p className="text-blue-500 font-semibold text-sm">
+                        Your course is already live on educity
+                      </p>
+                    ) : (
+                      <a className="bg-accent hover:bg-accent/70 text-gray-100 py-1 px-3 text-sm rounded-md cursor-pointer">
+                        Publish
+                      </a>
+                    )}
+                    <Link href={`/instructor/course/view/${course.slug}`}>
+                      <a className="bg-primary hover:bg-primary/70 text-accent py-1 px-3 text-sm rounded-md ml-2 cursor-pointer">
+                        View
+                      </a>
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            </Link>
-          </>
-        )}
-      </div>
+              </a>
+            ))
+          ) : (
+            <>
+              <Link href="/instructor/course/create">
+                <div
+                  className="w-full mx-auto cursor-pointer tooltip tooltip-bottom lg:tooltip"
+                  data-tip="Create New Course"
+                >
+                  <div className="border-2 border-dashed hover:border-accent group rounded-lg w-52 h-60 mx-auto flex flex-col justify-center items-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-6 w-6 text-gray-500 mb-1 group-hover:text-accent"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                    <p className="text-gray-500 group-hover:text-secondary">
+                      Add Course
+                    </p>
+                  </div>
+                </div>
+              </Link>
+            </>
+          )}
+        </div>
+      </DrawerWrapper>
     </InstructorWrapper>
   );
 };

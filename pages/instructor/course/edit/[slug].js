@@ -24,17 +24,10 @@ const EditCourse = () => {
   const [currentLesson, setCurrentLesson] = useState({});
   const [updatingLesson, setUpdatingLesson] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [uploadVideoText, setUploadVideoText] = useState("Upload Video");
 
   //course details structure , defining default values
-  const [values, setValues] = useState({
-    title: "",
-    description: "",
-    category: "",
-    price: "500",
-    paid: true,
-    uploading: false,
-    loading: false,
-  });
+  const [values, setValues] = useState({});
 
   //to display image preview
   const [imgPreview, setImgPreview] = useState("");
@@ -193,15 +186,86 @@ const EditCourse = () => {
     }
   };
 
-  //handle video
-  const handleVideo = async () => {
-    alert("handle video");
+  //handle video update for lesson update
+  const handleLessonVideoUpload = async (e) => {
+    try {
+      const file = e.target.files[0];
+      if (!file) {
+        setUploadVideoText("Upload lesson video");
+      } else {
+        setUploadVideoText(`Uploading ${file.name}`);
+        setUpdatingLesson(true);
+        //send video as form data
+        const lessonVideo = new FormData();
+        lessonVideo.append("lessonVideo", file);
+
+        //send video to api with pogress trackig by axios
+        const { data } = await axios.post(
+          `/api/course/lesson-video-upload/${values.instructor._id}`,
+          lessonVideo,
+          {
+            onUploadProgress: (e) => {
+              setProgress(Math.round((100 * e.loaded) / e.total));
+            },
+          }
+        );
+
+        //successful response back
+        // console.log(data);
+        setCurrentLesson({ ...currentLesson, video: data });
+        setUploadVideoText(`Uploaded ${file.name}`);
+        setUpdatingLesson(false);
+      }
+    } catch (err) {
+      console.log(err);
+      setUpdatingLesson(false);
+      toast.error("Video Upload Failed, Please try again");
+    }
   };
 
+  const handleLessonVideoDelete = async () => {
+    try {
+      setUpdatingLesson(true);
+      const { data } = await axios.post(
+        `/api/course/lesson-video-remove/${values.instructor._id}`,
+        currentLesson.video
+      );
+      setUpdatingLesson(false);
+      setCurrentLesson({ ...currentLesson, video: {} });
+      setUploadVideoText("Upload Lesson Video");
+      setProgress(0);
+    } catch (err) {
+      console.log(err);
+      setUpdatingLesson(false);
+
+      toast.error("Video remove fail");
+    }
+  };
   //handle update lesson
   const handleUpdateLesson = async (e) => {
-    e.preventDefault();
-    console.log({ currentLesson });
+    try {
+      e.preventDefault();
+      setUpdatingLesson(true);
+      //send put request to Update the lesson
+      const { data } = await axios.put(
+        `/api/course/update-lessons/${slug}/${currentLesson._id}`,
+        currentLesson
+      );
+      setUpdatingLesson(false);
+
+      if (data.updated) {
+        //find the index of the lesson from array to change the ui
+        let arr = values.lessons;
+        //find the index that matches current lesson id
+        let index = arr.findIndex((el) => el._id === currentLesson._id);
+        arr[index] = currentLesson;
+        setValues({ ...values, lessons: arr });
+        toast.success("Lesson Updated", { theme: "dark" });
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error("Opps! Error updating Lesson", { theme: "dark" });
+    }
   };
 
   //handle form submit
@@ -430,7 +494,9 @@ const EditCourse = () => {
                   setCurrentLesson={setCurrentLesson}
                   updatingLesson={updatingLesson}
                   handleUpdateLesson={handleUpdateLesson}
-                  handleVideo={handleVideo}
+                  handleLessonVideoUpload={handleLessonVideoUpload}
+                  handleLessonVideoDelete={handleLessonVideoDelete}
+                  uploadVideoText={uploadVideoText}
                   progress={progress}
                 />
               </div>
