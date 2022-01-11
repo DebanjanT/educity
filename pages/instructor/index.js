@@ -84,12 +84,21 @@ const instructorDashboard = () => {
                         You need atleast 1 lesson to publish your course
                       </p>
                     ) : course.published ? (
-                      <p className="text-blue-500 font-semibold text-sm">
-                        Your course is already live on educity
+                      <p className="text-gray-100 bg-red-500 text-sm text-center my-auto py-1 px-2 rounded-full flex align-center items-center">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-5 w-5 mr-1"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                        >
+                          <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
+                        </svg>
+                        Already Live
                       </p>
                     ) : (
-                      <a className="bg-accent hover:bg-accent/70 text-gray-100 py-1 px-3 text-sm rounded-md cursor-pointer">
-                        Publish
+                      <a className="text-green-500 text-xs font-semibold">
+                        Your course is ready to publish and put it live on
+                        educity
                       </a>
                     )}
                     <Link href={`/instructor/course/view/${course.slug}`}>

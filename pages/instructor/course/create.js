@@ -21,7 +21,7 @@ const createCourse = () => {
     name: "",
     description: "",
     category: "",
-    price: "500",
+    price: 500,
     paid: true,
     uploading: false,
     loading: false,
@@ -91,6 +91,7 @@ const createCourse = () => {
   //handle form submit
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
       const { data } = await axios.post("/api/course/create-new-course", {
         ...values,

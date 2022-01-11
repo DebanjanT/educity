@@ -54,7 +54,10 @@ const CreateCourseForm = ({
 
         <select
           value={values.paid}
-          onChange={(v) => setValues({ ...values, paid: !values.paid })}
+          onChange={(e) => {
+            const isPaid = e.target.value == "true";
+            setValues({ ...values, price: isPaid ? 500 : 0, paid: isPaid });
+          }}
           className="select select-bordered select-secondary w-full lg:w-4/5 mb-3 rounded-none lg:rounded-lg"
         >
           <option value={false} selected>

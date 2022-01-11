@@ -27,7 +27,7 @@ const Nav = () => {
   };
 
   return (
-    <div className="navbar shadow bg-neutral text-neutral-content sticky top-0 z-50">
+    <div className="navbar shadow bg-black text-neutral-content sticky top-0 z-50">
       <div className="flex-1 px-2 mx-2l">
         <div className="flex flex-col">
           <svg

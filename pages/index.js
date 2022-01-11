@@ -28,20 +28,12 @@ export default function index() {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <DrawerWrapper>
-        <section className="flex flex-col lg:flex-row bg-neutral">
+        <section className="flex flex-col lg:flex-row bg-black">
           <div className="container mx-auto flex flex-col items-center px-4 py-14 text-center md:py-20 md:px-10 lg:px-32 xl:max-w-3xl">
-            <p className="w-full leading-relaxed flex justify-center  align-center items-center font-bold text-2xl text-white lg:text-5xl mb-4">
-              <span>
-                <kbd className="animate-bounce kbd kbd-lg text-accent bg-primary mr-3">
-                  ⌥
-                </kbd>{" "}
-              </span>{" "}
-              City to learn{" "}
-              <span className=" text-primary ml-2 -rotate-6 transition-all underline underline-offset-4  decoration-wavy hover:underline-offset-8">
-                <code> NEW</code>
-              </span>{" "}
-              <br />
-            </p>
+            <img
+              src="/assets/educity_neon.png"
+              className="w-1/2 md:w-4/5 lg:w-full animate-pulse"
+            />
 
             <div className="mockup-code bg-accent-focus w-4/5 lg:w-full flex flex-col  items-start align-center">
               <pre data-prefix="$">
