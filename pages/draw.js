@@ -52,7 +52,7 @@ const Canvas = () => {
         ctx.translate(e.x, e.y);
         ctx.rotate(angle);
         hue += 3;
-        angle += 0.01;
+        angle += 0.08;
         if (shape.star == true) {
           draw(0, 0, 40, 0.5, 8);
         } else if (shape.triangle == true) {
