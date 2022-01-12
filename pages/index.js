@@ -28,11 +28,11 @@ export default function index() {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <DrawerWrapper>
-        <section className="flex flex-col lg:flex-row bg-black">
+        <section className="flex flex-col lg:flex-row bg-gradient-to-r from-black to-coolGray-900">
           <div className="container mx-auto flex flex-col items-center px-4 py-14 text-center md:py-20 md:px-10 lg:px-32 xl:max-w-3xl">
             <img
               src="/assets/educity_neon.png"
-              className="w-1/2 md:w-4/5 lg:w-full animate-pulse"
+              className="w-3/4 md:w-4/5 lg:w-full mb-10"
             />
 
             <div className="mockup-code bg-accent-focus w-4/5 lg:w-full flex flex-col  items-start align-center">
