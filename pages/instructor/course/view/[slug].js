@@ -7,6 +7,7 @@ import AddLessonForm from "../../../../components/form/addLessonForm";
 import { toast } from "react-toastify";
 import ReactPlayer from "react-player";
 import DrawerWrapper from "../../../../components/wrapperRoutes/DrawerWrapper";
+import moment from "moment";
 
 const CourseView = () => {
   const [course, setCourse] = useState();
@@ -207,7 +208,11 @@ const CourseView = () => {
                             className="w-4 h-4 border rounded-full dark:bg-coolGray-500 dark:border-coolGray-700"
                           />
                           <p className="text-sm">
-                            {course.instructor.name} • {course.createdAt} •
+                            {course.instructor.name} •{" "}
+                            {moment(course.createdAt).format(
+                              "dddd, MMMM Do YYYY, h:mm:ss a"
+                            )}{" "}
+                            •
                           </p>
                         </div>
                       </div>
@@ -238,7 +243,7 @@ const CourseView = () => {
                             fill="currentColor"
                           >
                             <path
-                              fill-rule="evenodd"
+                              fillRule="evenodd"
                               d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
                               clip-rule="evenodd"
                             />
@@ -284,7 +289,7 @@ const CourseView = () => {
                         >
                           <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
                           <path
-                            fill-rule="evenodd"
+                            fillRule="evenodd"
                             d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
                             clip-rule="evenodd"
                           />

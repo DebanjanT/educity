@@ -7,6 +7,7 @@ import axios from "axios";
 import Link from "next/link";
 import Footer from "../../components/footer";
 import DrawerWrapper from "../../components/wrapperRoutes/DrawerWrapper";
+import moment from "moment";
 
 const instructorDashboard = () => {
   const router = useRouter();
@@ -74,7 +75,9 @@ const instructorDashboard = () => {
                     {course.title}
                   </h3>
                   <p className="text-gray-500 pb-4 text-sm ">
-                    {course.createdAt}
+                    {moment(course.createdAt).format(
+                      "dddd, MMMM Do YYYY, h:mm:ss a"
+                    )}
                   </p>
 
                   {/* <p className="text-gray-600">{course.description}</p> */}
