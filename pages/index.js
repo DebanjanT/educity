@@ -153,7 +153,7 @@ export default function index() {
               <div className="flex justify-center w-full md:max-w-md md:mr-8 lg:mr-12 ">
                 <img
                   src="assets/educity_home_hero.png"
-                  className="rounded-md animate-none lg:animate-updown shadow-lg"
+                  className="rounded-md animate-none md:animate-updown shadow-lg"
                   alt="hero"
                 />
               </div>
