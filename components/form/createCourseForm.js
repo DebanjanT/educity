@@ -82,7 +82,7 @@ const CreateCourseForm = ({
         <div className="flex items-center align-center my-3">
           <label
             className="btn btn-circle bg-secondary border-none rounded-lg"
-            for="image"
+            htmlFor="image"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

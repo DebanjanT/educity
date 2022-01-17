@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import dynamic from "next/dynamic";
-const MonacoEditor = dynamic(import("react-monaco-editor"), { ssr: false });
+import Editor from "@monaco-editor/react";
+
 import DrawerWrapper from "../components/wrapperRoutes/DrawerWrapper";
 import RestrictedForMobile from "../components/restricted/forMobile";
 const App = () => {
@@ -69,9 +69,9 @@ const App = () => {
               <p className="bg-secondary mt-1 text-center text-gray-50 rounded-t-lg">
                 HTML
               </p>
-              <MonacoEditor
+              <Editor
                 width="32vw"
-                height="400"
+                height="400px"
                 language="html"
                 theme="hc-black"
                 value={html}
@@ -87,9 +87,9 @@ const App = () => {
               <p className="bg-secondary mt-1 text-center text-gray-50 rounded-t-lg">
                 CSS
               </p>
-              <MonacoEditor
+              <Editor
                 width="32vw"
-                height="400"
+                height="400px"
                 className="shadow-md"
                 language="css"
                 theme="hc-black"
@@ -107,9 +107,9 @@ const App = () => {
               <p className="bg-secondary mt-1 text-center text-gray-50 rounded-t-lg">
                 JS
               </p>
-              <MonacoEditor
+              <Editor
                 width="32vw"
-                height="400"
+                height="400px"
                 language="javascript"
                 theme="hc-black"
                 value={js}
