@@ -10,6 +10,7 @@ import { useState } from "react";
 import TopBarProgress from "react-topbar-progress-indicator";
 import { Offline } from "react-detect-offline";
 import OfflineIndicator from "../components/internet/offlineIndicator";
+import "../public/css/styles.css";
 
 function MyApp({ Component, pageProps }) {
   //top loading bar
