@@ -89,8 +89,7 @@ const Canvas = () => {
           Change to star
         </p>
       )}
-
-      <canvas id="canvas1" />
+      <canvas id="canvas1" />.
     </div>
   );
 };
